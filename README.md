@@ -1,12 +1,19 @@
-# React + Vite
+# EduVance - E-Learning Platform
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+EduVance is a simple and interactive e-learning platform built with React. It allows users to browse courses, view chapters, and watch educational videos with real-time progress tracking.
 
-Currently, two official plugins are available:
+## 🔧 Features
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+- Course and chapter listing sidebar
+- Embedded video player
+- Video progress tracking (% watched)
+- Chapter descriptions
+- Clean and responsive UI
 
-## Expanding the ESLint configuration
+## 🛠️ Tech Stack
 
-If you are developing a production application, we recommend using TypeScript and enable type-aware lint rules. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+- React
+- HTML/CSS
+- Vite
+- Git & GitHub
+
