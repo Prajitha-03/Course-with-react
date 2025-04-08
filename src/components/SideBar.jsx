@@ -1,4 +1,6 @@
 import React, { useState } from 'react';
+import CourseSidebar from './CourseSidebar';
+import MainContent from './MainContent';
 import './SideBar.css';
 
 const SideBar = ({ courses }) => {
@@ -6,67 +8,60 @@ const SideBar = ({ courses }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [selectedChapterName, setSelectedChapterName] = useState('');
     const [selectedDescription, setSelectedDescription] = useState('');
+    const [selectedQuiz, setSelectedQuiz] = useState([]);
+    const [showDescription, setShowDescription] = useState(true);
+    const [showQuiz, setShowQuiz] = useState(false);
+    const [selectedAnswers, setSelectedAnswers] = useState({});
+    const [quizResults, setQuizResults] = useState({});
+
     const toggleChapters = (index) => {
         setExpandedCourses(expandedCourses === index ? null : index);
     };
 
-    const handleChapterClick = (chapters) => {
-        setSelectedVideo(chapters.videoUrl);
-        setSelectedChapterName(chapters.name);
-        setSelectedDescription(chapters.description || 'No desccription'); 
+    const handleChapterClick = (chapter) => {
+        setSelectedVideo(chapter.videoUrl);
+        setSelectedChapterName(chapter.name);
+        setSelectedDescription(chapter.description || 'No description available.');
+        setSelectedQuiz(chapter.quiz || []);
+        setShowDescription(true);
+        setShowQuiz(false);
+        setSelectedAnswers({});
+        setQuizResults({});
+    };
+
+    const handleAnswerSelect = (questionIndex, selectedOption) => {
+        const correctAnswer = selectedQuiz[questionIndex].answer;
+        setSelectedAnswers((prev) => ({
+            ...prev,
+            [questionIndex]: selectedOption,
+        }));
+        setQuizResults((prev) => ({
+            ...prev,
+            [questionIndex]: selectedOption === correctAnswer,
+        }));
     };
 
     return (
-        <div className="main-container">
-            <div className="sidebar">
-                <h2>Courses</h2>
-                <ul>
-                    {courses.map((courses, index) => (
-                        <li key={index}>
-                            <div onClick={() => toggleChapters(index)} >
-                                {courses.name}
-                            </div>
-                            {expandedCourses === index && courses.chapters && (
-                                <ul className="chapters">
-                                    {
-                                    courses.chapters.map((chapters, chaptersIndex) => (
-                                        <li
-                                            key={chaptersIndex}
-                                            onClick={() => handleChapterClick(chapters)}
-                                        >
-                                            {chapters.name}
-                                        </li>
-                                    ))}
-                                </ul>
-                            )}
-                        </li>
-                    ))}
-                </ul>
-            </div>
-            <div className="video-container">
-            {selectedChapterName && (
-                    <h3 className="chapter-title">{selectedChapterName}</h3> // Display the chapter name
-                )}
-                {selectedVideo ? (
-                    <iframe
-                        src={selectedVideo}
-                        title="Video Player"
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                        allowFullScreen
-                    ></iframe>
-                ) : (
-                    <p>Select a chapter to watch the video</p>
-                )}
-                {selectedDescription &&
-                 <div className="description-box">
-                <div>
-                    <h4>Description</h4>
-                <p>{selectedDescription}</p>
-                    </div>
-            </div>}
-                
-            </div>
-            
+        <div className="flex h-screen">
+            <CourseSidebar
+                courses={courses}
+                expandedCourses={expandedCourses}
+                toggleChapters={toggleChapters}
+                handleChapterClick={handleChapterClick}
+            />
+            <MainContent
+                selectedChapterName={selectedChapterName}
+                selectedVideo={selectedVideo}
+                selectedDescription={selectedDescription}
+                selectedQuiz={selectedQuiz}
+                showDescription={showDescription}
+                showQuiz={showQuiz}
+                setShowDescription={setShowDescription}
+                setShowQuiz={setShowQuiz}
+                selectedAnswers={selectedAnswers}
+                quizResults={quizResults}
+                handleAnswerSelect={handleAnswerSelect}
+            />
         </div>
     );
 };
