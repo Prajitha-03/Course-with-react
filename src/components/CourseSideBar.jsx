@@ -1,8 +1,7 @@
 import React from 'react';
-
 const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapterClick }) => {
     return (
-        <div className="w-64 bg-gray-100 p-4 border-r border-gray-300 overflow-y-auto shadow-md">
+        <div className="w-90 bg-gray-100 p-4 border-r border-gray-300 overflow-y-auto shadow-md">
             <h2 className="text-xl font-bold mb-4">Course Content</h2>
             <ul>
                 {courses.map((course, index) => (

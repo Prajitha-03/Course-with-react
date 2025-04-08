@@ -1,4 +1,5 @@
 import React from 'react';
+import AllCoursesSection from './AllCoursesSection';
 
 const MainContent = ({
     selectedChapterName,
@@ -12,20 +13,29 @@ const MainContent = ({
     selectedAnswers,
     quizResults,
     handleAnswerSelect,
+    onNextChapter,
+    courses,
+    currentCourseIndex,
+    handleChapterClick,
+    currentChapterIndex,
+    onPrevChapter,
 }) => {
+
     return (
         <div className="flex-1 p-6 bg-white">
             {selectedChapterName && (
                 <h3 className="text-2xl font-semibold mb-4">{selectedChapterName}</h3>
             )}
             {selectedVideo ? (
-                <iframe
-                    className="w-190 h-120 p-0 10 rounded-md shadow-lg"
-                    src={selectedVideo}
-                    title="Video Player"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-                    allowFullScreen
-                ></iframe>
+                <div className="flex justify-center items-center">
+                    <iframe
+                        className="w-200 h-99 p-0 10 max-w-4xl rounded-md shadow-lg"
+                        src={selectedVideo}
+                        title="Video Player"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowFullScreen
+                    ></iframe>
+                </div>
             ) : (
                 <p className="text-gray-500 flex items-center justify-center h-screen">
                     Select a chapter to watch the video
@@ -105,6 +115,18 @@ const MainContent = ({
                     </ul>
                 </div>
             )}
+            <div className="mt-4 flex justify-between">
+                <button onClick={onPrevChapter}  className="flex items-center gap-1 px-4 py-2 bg-gray-600 text-white rounded-xl">
+                     <span>&lt;</span>
+                </button>
+                <button onClick={onNextChapter} className="px-4 py-2 bg-gray-500 text-white rounded-md shadow-md">
+                    <span>&gt;</span>
+                </button>
+            </div>
+            <AllCoursesSection
+                courses={courses}
+                handleChapterClick={handleChapterClick}
+            />
         </div>
     );
 };
