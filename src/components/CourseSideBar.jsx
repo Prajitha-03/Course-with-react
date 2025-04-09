@@ -1,13 +1,13 @@
 import React from 'react';
 const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapterClick }) => {
     return (
-        <div className="w-90 bg-gray-100 p-4 border-r border-gray-300 overflow-y-auto shadow-md">
+        <div className="w-110 bg-gray-100 p-4 border-r border-gray-300 overflow-y-auto shadow-md">
             <h2 className="text-xl font-bold mb-4">Course Content</h2>
             <ul>
                 {courses.map((course, index) => (
                     <li key={index}>
                         <div
-                            className="cursor-pointer p-2 bg-white border border-gray-300 rounded-md mb-2 hover:bg-gray-200 transition"
+                            className="cursor-pointer p-2 bg-gray-200 border border-gray-300  mb-2 hover:bg-gray-200 transition"
                             onClick={() => toggleChapters(index)}
                         >
                             {course.name}

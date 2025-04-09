@@ -11,7 +11,7 @@ function App() {
   }
   return (
     <>
-      <Main />
+      <Main/>
       <SideBar courses={courses} onclick={handleSelectCourse} />
     </>
   )

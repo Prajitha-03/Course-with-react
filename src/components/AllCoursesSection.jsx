@@ -9,7 +9,7 @@ const AllCoursesSection = ({ courses, handleChapterClick }) => {
                     const firstChapter = course.chapters[0];
                     return (
                         <div
-                            className="topic-box w-37 h-25 m-2 rounded-md shadow-md overflow-hidden cursor-pointer"
+                            className="topic-box w-35 h-25 m-2 rounded-md shadow-md overflow-hidden cursor-pointer bg-grey-200"
                             onClick={() => handleChapterClick(firstChapter, courseIndex, 0)}
                             key={courseIndex}
                         >

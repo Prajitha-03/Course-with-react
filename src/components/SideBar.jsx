@@ -15,6 +15,7 @@ const SideBar = ({ courses }) => {
     const [quizResults, setQuizResults] = useState({});
     const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
     const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
+    const [showAllCourses, setShowAllCourses] = useState(false); // State to show AllCoursesSection
 
     const toggleChapters = (index) => {
         setExpandedCourses(expandedCourses === index ? null : index);
@@ -32,6 +33,7 @@ const SideBar = ({ courses }) => {
         setCurrentCourseIndex(courseIndex);
         setCurrentChapterIndex(chapterIndex);
         setExpandedCourses(courseIndex);
+        setShowAllCourses(false); // Hide AllCoursesSection when a chapter is selected
     };
 
     const handleAnswerSelect = (questionIndex, selectedOption) => {
@@ -44,6 +46,10 @@ const SideBar = ({ courses }) => {
             ...prev,
             [questionIndex]: selectedOption === correctAnswer,
         }));
+    };
+
+    const handleShowAllCourses = () => {
+        setShowAllCourses(!showAllCourses); // Toggle AllCoursesSection visibility
     };
 
     const handleNextChapter = () => {
@@ -109,9 +115,17 @@ const SideBar = ({ courses }) => {
                 handleChapterClick={handleChapterClick}
                 currentChapterIndex={currentChapterIndex}
                 onPrevChapter={handlePrevChapter}
+                showAllCourses={showAllCourses} // Pass showAllCourses state
+                setShowAllCourses={setShowAllCourses} // Pass setShowAllCourses function
             />
+            <button
+                onClick={handleShowAllCourses}
+                className="absolute top-4 left-4 bg-gray-800 text-white px-4 py-2 rounded-md"
+            >
+                {showAllCourses ? 'Hide All Courses' : 'Show All Courses'}
+            </button>
         </div>
     );
 };
-
+    
 export default SideBar;
