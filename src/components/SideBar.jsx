@@ -118,14 +118,8 @@ const SideBar = ({ courses }) => {
                 showAllCourses={showAllCourses} // Pass showAllCourses state
                 setShowAllCourses={setShowAllCourses} // Pass setShowAllCourses function
             />
-            <button
-                onClick={handleShowAllCourses}
-                className="absolute top-4 left-4 bg-gray-800 text-white px-4 py-2 rounded-md"
-            >
-                {showAllCourses ? 'Hide All Courses' : 'Show All Courses'}
-            </button>
         </div>
     );
 };
-    
+
 export default SideBar;
