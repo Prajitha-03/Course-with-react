@@ -1,0 +1,47 @@
+[{
+  "_id": {
+    "$oid": "67fe25d3ef38c88b75adc9aa"
+  },
+  "instructorId": {
+    "$oid": "67bc5bfee682a765d6bd78b3"
+  },
+  "questionType": "Fill in the Blanks",
+  "questionText": "why7",
+  "options": [],
+  "correctAnswer": "yes",
+  "category": "JavaScript",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff4b260293eb2cdd1bcff2"
+  },
+  "instructorId": {
+    "$oid": "67bc5bfee682a765d6bd78b3"
+  },
+  "questionType": "True/False",
+  "questionText": "time is 11pm",
+  "options": [],
+  "correctAnswer": "true",
+  "category": "Machine Learning",
+  "__v": 0
+},
+{
+  "_id": {
+    "$oid": "67ff4b820293eb2cdd1bcff9"
+  },
+  "instructorId": {
+    "$oid": "67bc5bfee682a765d6bd78b3"
+  },
+  "questionType": "MCQ",
+  "questionText": "choose any one option",
+  "options": [
+    "A1",
+    "A2",
+    "A3",
+    "A4"
+  ],
+  "correctAnswer": "A3",
+  "category": "JavaScript",
+  "__v": 0
+}]

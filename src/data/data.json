@@ -1,0 +1,74 @@
+
+[
+  {
+    "_id": {
+      "$oid": "67fe46a006683cec2555784d"
+    },
+    "title": "Hindi",
+    "description": "about hindi course",
+    "categories": [
+      "Web Development",
+      "Design"
+    ],
+    "tags": [
+      "Free"
+    ],
+    "image": "1744717472577_1.jpg",
+    "instructorId": {
+      "$oid": "67bc5bfee682a765d6bd78b3"
+    },
+    "instructorName": "shiva",
+    "units": [
+      {
+        "title": "unit1",
+        "lessons": [
+          {
+            "title": "lesson1",
+            "videoUrl": "https://www.youtube.com/watch?v=3LG_BlKz_ds",
+            "fileUrl": "/pdfs/JSX.pdf",
+            "_id": {
+              "$oid": "67fe479c06683cec25557868"
+            }
+          },
+          {
+            "title": "lesson2",
+            "videoUrl": "https://www.youtube.com/watch?v=mbiMAUE0CX4",
+            "fileUrl": "http://localhost:5001/uploadsModule/1744717724846-VN.pdf",
+            "_id": {
+              "$oid": "67fe479c06683cec25557869"
+            }
+          }
+        ],
+        "quizId": {
+          "$oid": "67fe46df06683cec2555785a"
+        },
+        "_id": {
+          "$oid": "67fe479c06683cec25557867"
+        }
+      },
+      {
+        "title": "unit2",
+        "lessons": [
+          {
+            "title": "lesson3",
+            "videoUrl": "https://www.youtube.com/watch?v=mbiMAUE0CX4",
+            "fileUrl": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf",
+            "_id": {
+              "$oid": "67fe479c06683cec2555786b"
+            }
+          }
+        ],
+        "quizId": {
+          "$oid": "67fe46df06683cec2555785a"
+        },
+        "_id": {
+          "$oid": "67fe479c06683cec2555786a"
+        }
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-04-15T11:44:32.580Z"
+    },
+    "__v": 1
+  }
+]
