@@ -9,13 +9,12 @@ const CourseSidebar = ({
     expandedCourses,
     toggleChapters,
     handleChapterClick,
-    handleQuizClick
 }) => {
 
     const [showPdfModal, setShowPdfModal] = useState(false);
     const [selectedCourse, setSelectedCourse] = useState(null);
-    const [isQuizOpen, setIsQuizOpen] = useState(false);  // State to manage QuizModal visibility
-    const [quizUnit, setQuizUnit] = useState(null);  // Store the unit that contains the quiz
+    const [isQuizOpen, setIsQuizOpen] = useState(false); 
+    const [quizUnit, setQuizUnit] = useState(null);
     const [selectedPdf, setSelectedPdf] = useState(null);
     // Function to handle opening of QuizModal
     const openQuizModal = (unit) => {
@@ -67,7 +66,7 @@ const CourseSidebar = ({
 
                                                 {lesson.fileUrl && (
                                                     <button
-                                                        onClick={() => { // Send the whole course to PdfModal
+                                                        onClick={() => {
                                                             setSelectedPdf(lesson);
                                                             setShowPdfModal(true);
                                                         }}
@@ -82,7 +81,7 @@ const CourseSidebar = ({
                                         {unit.quizId && (
                                             <li className="mb-2 cursor-pointer hover:bg-gray-200 p-2 rounded-md transition">
                                                 <span
-                                                    onClick={() => openQuizModal(unit)}  // Open QuizModal
+                                                    onClick={() => openQuizModal(unit)}
                                                     className="text-purple-600 hover:text-purple-800"
                                                 >
                                                     Quiz

@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CourseSidebar from './CourseSidebar';
+import CourseSidebar from './CourseSideBar';
 import MainContent from './MainContent';
 import './SideBar.css';
 
@@ -8,17 +8,11 @@ const SideBar = ({ courses }) => {
     const [selectedVideo, setSelectedVideo] = useState(null);
     const [selectedChapterName, setSelectedChapterName] = useState('');
     const [selectedDescription, setSelectedDescription] = useState('');
-    const [selectedQuiz, setSelectedQuiz] = useState([]);
     const [showDescription, setShowDescription] = useState(true);
     const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
     const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
-    const [showAllCourses, setShowAllCourses] = useState(false); // State to show AllCoursesSection
-    const [showQuiz, setShowQuiz] = useState(false);
+    const [showAllCourses, setShowAllCourses] = useState(false); 
 
-    const handleQuizClick = (quizId, courseIndex, unitIndex) => {
-        console.log("Quiz clicked:", quizId, courseIndex, unitIndex);
-        setShowQuiz(true);
-    };
     const toggleChapters = (index) => {
         setExpandedCourses(expandedCourses === index ? null : index);
     };
@@ -28,7 +22,6 @@ const SideBar = ({ courses }) => {
         setSelectedVideo(chapter.videoUrl);
         setSelectedChapterName(chapter.title);
         setSelectedDescription(chapter.description || 'No description available.');
-        setSelectedQuiz(chapter.quizId || []);
         setShowDescription(true);
         setCurrentCourseIndex(courseIndex);
         setCurrentChapterIndex(chapterIndex);

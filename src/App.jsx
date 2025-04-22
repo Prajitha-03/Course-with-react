@@ -10,7 +10,7 @@ function App() {
   return (
     <>
       <Main />
-      {data.length > 0 && <SideBar courses={data} onclick={handleSelectCourse} />}
+      <SideBar courses={data} onclick={handleSelectCourse} />
     </>
   )
 }
