@@ -6,6 +6,7 @@ const AllCoursesSection = ({ courses, handleChapterClick }) => {
             <h3 className="text-lg font-medium mb-2">Continue Learning</h3>
             <div className="topic-list flex flex-wrap gap-2 bg-gray-00">
                 {courses.map((course, courseIndex) => {
+<<<<<<< HEAD
                     return (
                         <div
                             className="topic-box w-35 h-25 m-2 rounded-md shadow-md overflow-hidden cursor-pointer bg-grey-200"
@@ -15,6 +16,18 @@ const AllCoursesSection = ({ courses, handleChapterClick }) => {
                             <img
                                 src={`https://via.placeholder.com/150?text=${course.title}`}
                                 alt={course.title}
+=======
+                    const firstChapter = course.chapters[0];
+                    return (
+                        <div
+                            className="topic-box w-35 h-25 m-2 rounded-md shadow-md overflow-hidden cursor-pointer bg-grey-200"
+                            onClick={() => handleChapterClick(firstChapter, courseIndex, 0)}
+                            key={courseIndex}
+                        >
+                            <img
+                                src={`https://via.placeholder.com/150?text=${course.name}`}
+                                alt={course.name}
+>>>>>>> d26d7410d8453dfbc7793308528b8d6c66974f73
                                 className="w-full h-full object-cover"
                             />
                         </div>
