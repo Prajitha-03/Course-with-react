@@ -1,11 +1,33 @@
-import React, { useState } from 'react';
-import questions from '../data/questions.json';
+import React, { useState, useEffect } from 'react';
 
 const QuizModal = ({ closeQuizModal }) => {
+  const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
-  const [answers, setAnswers] = useState(Array(questions.length).fill(''));
+  const [answers, setAnswers] = useState([]);
   const [score, setScore] = useState(null);
   const [reviewMode, setReviewMode] = useState(false);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
+  useEffect(() => {
+    fetch('/data/questions.json')
+      .then(res => {
+        if (!res.ok) {
+          throw new Error('Failed to fetch questions');
+        }
+        return res.json();
+      })
+      .then(data => {
+        setQuestions(data);
+        setAnswers(Array(data.length).fill(''));
+        setLoading(false);
+      })
+      .catch(err => {
+        console.error('Error loading questions:', err);
+        setError(true);
+        setLoading(false);
+      });
+  }, [unit.ID]);
 
   const handleSelect = (value) => {
     const updated = [...answers];
@@ -97,6 +119,24 @@ const QuizModal = ({ closeQuizModal }) => {
     }
   };
 
+  if (loading) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center">Loading Quiz...</div>
+      </div>
+    );
+  }
+
+  if (error) {
+    return (
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
+        <div className="bg-white p-6 rounded-xl shadow-lg text-center text-red-500">
+          Failed to load quiz 😢
+        </div>
+      </div>
+    );
+  }
+
   return (
     <div className="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex justify-center items-center z-50 transition-opacity">
       <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-lg w-full animate-fadeIn">
@@ -106,6 +146,7 @@ const QuizModal = ({ closeQuizModal }) => {
         >
           ✖
         </button>
+
         {score !== null ? (
           reviewMode ? (
             <>

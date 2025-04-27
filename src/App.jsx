@@ -1,32 +1,28 @@
-<<<<<<< HEAD
-import './App.css'
-import SideBar from './components/SideBar'
-import data from './data/data.json'; // Import data.json
-=======
+import './App.css';
+import SideBar from './components/SideBar';
+import Main from './components/Main';
+import { useEffect, useState } from 'react';
 
-import './App.css'
-import SideBar from './components/SideBar'
-import courses from './data/courses'
->>>>>>> d26d7410d8453dfbc7793308528b8d6c66974f73
-import Main from './components/Main'
 function App() {
+  const [courses, setCourses] = useState([]);
+
+  useEffect(() => {
+    fetch('/data/data.json')
+      .then(response => response.json())
+      .then(json => setCourses(json))
+      .catch(error => console.error('Error fetching courses:', error));
+  }, []);
+
   const handleSelectCourse = (course) => {
     console.log('Selected course:', course);
-  }
-<<<<<<< HEAD
+  };
 
-  return (
-    <>
-      <Main />
-      <SideBar courses={data} onclick={handleSelectCourse} />
-=======
   return (
     <>
       <Main />
       <SideBar courses={courses} onclick={handleSelectCourse} />
->>>>>>> d26d7410d8453dfbc7793308528b8d6c66974f73
     </>
-  )
+  );
 }
 
-export default App
+export default App;

@@ -1,0 +1,40 @@
+[
+  {
+    "_id": {
+      "$oid": "67fe46df06683cec2555785a"
+    },
+    "instructorId": {
+      "$oid": "67bc5bfee682a765d6bd78b3"
+    },
+    "title": "quize for hindi",
+    "category": "General",
+    "questions": [
+      {
+        "$oid": "67fe25d3ef38c88b75adc9aa"
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-04-15T11:45:35.572Z"
+    },
+    "__v": 0
+  },
+  {
+    "_id": {
+      "$oid": "67ff4bdf0293eb2cdd1bd000"
+    },
+    "instructorId": {
+      "$oid": "67bc5bfee682a765d6bd78b3"
+    },
+    "title": "science quiz",
+    "category": "General",
+    "questions": [
+      {
+        "$oid": "67ff4b260293eb2cdd1bcff2"
+      }
+    ],
+    "createdAt": {
+      "$date": "2025-04-16T06:19:11.691Z"
+    },
+    "__v": 0
+  }
+]

@@ -4,30 +4,22 @@ const AllCoursesSection = ({ courses, handleChapterClick }) => {
     return (
         <div className="all-courses-section mt-4">
             <h3 className="text-lg font-medium mb-2">Continue Learning</h3>
-            <div className="topic-list flex flex-wrap gap-2 bg-gray-00">
+            <div className="topic-list flex flex-wrap gap-2 bg-gray-100 p-2 rounded-md">
                 {courses.map((course, courseIndex) => {
-<<<<<<< HEAD
+                    const firstUnit = course.units?.[0]; 
+                    if (!firstUnit) return null;
+                    const firstLesson = firstUnit.lessons?.[0];
+                    if (!firstLesson) return null;
+
                     return (
                         <div
-                            className="topic-box w-35 h-25 m-2 rounded-md shadow-md overflow-hidden cursor-pointer bg-grey-200"
-                            onClick={() => handleChapterClick(course, courseIndex, 0)}
+                            className="topic-box w-40 h-32 m-2 rounded-md shadow-md overflow-hidden cursor-pointer bg-gray-200 hover:bg-gray-300 transition"
+                            onClick={() => handleChapterClick(firstLesson, courseIndex, 0)}
                             key={courseIndex}
                         >
                             <img
-                                src={`https://via.placeholder.com/150?text=${course.title}`}
+                                src={`https://via.placeholder.com/150?text=${encodeURIComponent(course.title)}`}
                                 alt={course.title}
-=======
-                    const firstChapter = course.chapters[0];
-                    return (
-                        <div
-                            className="topic-box w-35 h-25 m-2 rounded-md shadow-md overflow-hidden cursor-pointer bg-grey-200"
-                            onClick={() => handleChapterClick(firstChapter, courseIndex, 0)}
-                            key={courseIndex}
-                        >
-                            <img
-                                src={`https://via.placeholder.com/150?text=${course.name}`}
-                                alt={course.name}
->>>>>>> d26d7410d8453dfbc7793308528b8d6c66974f73
                                 className="w-full h-full object-cover"
                             />
                         </div>
