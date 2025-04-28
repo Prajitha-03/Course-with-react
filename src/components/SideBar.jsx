@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import CourseSidebar from './CourseSidebar';
+import CourseSidebar from './CourseSideBar';
 import MainContent from './MainContent';
 import './SideBar.css';
 
@@ -12,10 +12,6 @@ const SideBar = ({ courses }) => {
   const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
   const [showAllCourses, setShowAllCourses] = useState(false);
-  const [selectedQuiz, setSelectedQuiz] = useState([]);
-  const [showQuiz, setShowQuiz] = useState(false);
-  const [selectedAnswers, setSelectedAnswers] = useState({});
-  const [quizResults, setQuizResults] = useState({});
 
   const toggleChapters = (index) => {
     setExpandedCourses(expandedCourses === index ? null : index);
@@ -25,29 +21,12 @@ const SideBar = ({ courses }) => {
     setSelectedVideo(chapter.videoUrl);
     setSelectedChapterName(chapter.name);
     setSelectedDescription(chapter.description || 'No description available.');
-    setSelectedQuiz(chapter.quiz || []);
     setShowDescription(true);
-    setShowQuiz(false);
-    setSelectedAnswers({});
-    setQuizResults({});
     setCurrentCourseIndex(courseIndex);
     setCurrentChapterIndex(chapterIndex);
     setExpandedCourses(courseIndex);
     setShowAllCourses(false); // Hide AllCoursesSection when a chapter is selected
   };
-
-  const handleAnswerSelect = (questionIndex, selectedOption) => {
-    const correctAnswer = selectedQuiz[questionIndex]?.answer;
-    setSelectedAnswers((prev) => ({
-      ...prev,
-      [questionIndex]: selectedOption,
-    }));
-    setQuizResults((prev) => ({
-      ...prev,
-      [questionIndex]: selectedOption === correctAnswer,
-    }));
-  };
-
   const handleShowAllCourses = () => {
     setShowAllCourses(!showAllCourses);
   };
@@ -104,12 +83,6 @@ const SideBar = ({ courses }) => {
         selectedDescription={selectedDescription}
         showDescription={showDescription}
         setShowDescription={setShowDescription}
-        selectedQuiz={selectedQuiz}
-        showQuiz={showQuiz}
-        setShowQuiz={setShowQuiz}
-        selectedAnswers={selectedAnswers}
-        quizResults={quizResults}
-        handleAnswerSelect={handleAnswerSelect}
         onNextChapter={handleNextChapter}
         onPrevChapter={handlePrevChapter}
         courses={courses}

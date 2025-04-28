@@ -27,7 +27,7 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                             course.units.map((unit) => (
                                 <li key={unit._id.$oid}>
                                     <div
-                                        className="cursor-pointer p-2 bg-gray-200 border border-gray-300 mb-2 hover:bg-gray-300 transition rounded"
+                                        className="cursor-pointer p-5 bg-gray-200 border border-gray-300 mb-2 hover:bg-gray-300 transition rounded"
                                         onClick={() => toggleChapters({ courseId: course._id.$oid, unitId: unit._id.$oid })}
                                     >
                                         {unit.title}

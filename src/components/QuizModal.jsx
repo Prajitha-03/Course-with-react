@@ -27,7 +27,7 @@ const QuizModal = ({ closeQuizModal }) => {
         setError(true);
         setLoading(false);
       });
-  }, [unit.ID]);
+  }, []);
 
   const handleSelect = (value) => {
     const updated = [...answers];
@@ -78,8 +78,8 @@ const QuizModal = ({ closeQuizModal }) => {
                 key={opt}
                 onClick={() => handleSelect(opt)}
                 className={`w-full text-left border p-3 rounded-lg shadow-sm transition ${answers[current] === opt
-                    ? 'bg-blue-500 text-white shadow-md scale-105'
-                    : 'bg-white hover:bg-blue-50'
+                  ? 'bg-blue-500 text-white shadow-md scale-105'
+                  : 'bg-white hover:bg-blue-50'
                   }`}
               >
                 {opt}
@@ -95,8 +95,8 @@ const QuizModal = ({ closeQuizModal }) => {
                 key={opt}
                 onClick={() => handleSelect(opt)}
                 className={`flex-1 border p-3 rounded-lg shadow-sm transition ${answers[current] === opt
-                    ? 'bg-green-500 text-white shadow-md scale-105'
-                    : 'bg-white hover:bg-green-50'
+                  ? 'bg-green-500 text-white shadow-md scale-105'
+                  : 'bg-white hover:bg-green-50'
                   }`}
               >
                 {opt.toUpperCase()}
@@ -165,8 +165,8 @@ const QuizModal = ({ closeQuizModal }) => {
                   onClick={() => setCurrent((prev) => prev - 1)}
                   disabled={current === 0}
                   className={`py-2 px-4 rounded-lg transition ${current === 0
-                      ? 'bg-gray-300 text-white cursor-not-allowed'
-                      : 'bg-gray-800 text-white hover:bg-gray-700'
+                    ? 'bg-gray-300 text-white cursor-not-allowed'
+                    : 'bg-gray-800 text-white hover:bg-gray-700'
                     }`}
                 >
                   Previous
@@ -176,8 +176,8 @@ const QuizModal = ({ closeQuizModal }) => {
                   onClick={() => setCurrent((prev) => prev + 1)}
                   disabled={current === questions.length - 1}
                   className={`py-2 px-4 rounded-lg transition ${current === questions.length - 1
-                      ? 'bg-gray-300 text-white cursor-not-allowed'
-                      : 'bg-gray-800 text-white hover:bg-gray-700'
+                    ? 'bg-gray-300 text-white cursor-not-allowed'
+                    : 'bg-gray-800 text-white hover:bg-gray-700'
                     }`}
                 >
                   Next
@@ -245,8 +245,8 @@ const QuizModal = ({ closeQuizModal }) => {
                 onClick={() => setCurrent((prev) => prev - 1)}
                 disabled={current === 0}
                 className={`py-2 px-4 rounded-lg transition ${current === 0
-                    ? 'bg-gray-300 text-white cursor-not-allowed'
-                    : 'bg-gray-800 text-white hover:bg-gray-700'
+                  ? 'bg-gray-300 text-white cursor-not-allowed'
+                  : 'bg-gray-800 text-white hover:bg-gray-700'
                   }`}
               >
                 Previous
@@ -257,8 +257,8 @@ const QuizModal = ({ closeQuizModal }) => {
                   onClick={handleSubmit}
                   disabled={answers[current] === ''}
                   className={`py-2 px-4 rounded-lg transition ${answers[current] === ''
-                      ? 'bg-green-300 text-white cursor-not-allowed'
-                      : 'bg-green-500 text-white hover:bg-green-600'
+                    ? 'bg-green-300 text-white cursor-not-allowed'
+                    : 'bg-green-500 text-white hover:bg-green-600'
                     }`}
                 >
                   Submit Quiz
@@ -268,8 +268,8 @@ const QuizModal = ({ closeQuizModal }) => {
                   onClick={() => setCurrent((prev) => prev + 1)}
                   disabled={answers[current] === ''}
                   className={`py-2 px-4 rounded-lg transition ${answers[current] === ''
-                      ? 'bg-blue-300 text-white cursor-not-allowed'
-                      : 'bg-blue-500 text-white hover:bg-blue-600'
+                    ? 'bg-blue-300 text-white cursor-not-allowed'
+                    : 'bg-blue-500 text-white hover:bg-blue-600'
                     }`}
                 >
                   Next
