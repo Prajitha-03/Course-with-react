@@ -24,7 +24,10 @@
           {
             "title": "lesson1",
             "videoUrl": "https://www.youtube.com/watch?v=3LG_BlKz_ds",
-            "fileUrl": "/pdfs/JSX.pdf",
+            "fileUrl":[{
+              "name": "1st pdf",
+              "url": "/pdfs/JSX.pdf"}],
+
             "_id": {
               "$oid": "67fe479c06683cec25557868"
             }
@@ -32,7 +35,13 @@
           {
             "title": "lesson2",
             "videoUrl": "https://www.youtube.com/watch?v=mbiMAUE0CX4",
-            "fileUrl": "http://localhost:5001/uploadsModule/1744717724846-VN.pdf",
+            "fileUrl":[{
+              "name": "1st pdf",
+              "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
+            },{
+            "name": "2nd pdf",
+              "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
+            }] ,
             "_id": {
               "$oid": "67fe479c06683cec25557869"
             }
@@ -51,8 +60,17 @@
           {
             "title": "lesson3",
             "videoUrl": "https://www.youtube.com/watch?v=mbiMAUE0CX4",
-            "fileUrl": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf",
-            "_id": {
+            "fileUrl":[{
+              "name": "1st pdf",
+              "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
+            },{
+            "name": "2nd pdf",
+              "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
+            },{
+              "name": "3rd pdf",
+                "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
+              }] ,
+             "_id": {
               "$oid": "67fe479c06683cec2555786b"
             }
           }

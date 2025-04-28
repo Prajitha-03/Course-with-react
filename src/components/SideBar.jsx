@@ -25,11 +25,7 @@ const SideBar = ({ courses }) => {
     setCurrentCourseIndex(courseIndex);
     setCurrentChapterIndex(chapterIndex);
     setExpandedCourses(courseIndex);
-    setShowAllCourses(false); // Hide AllCoursesSection when a chapter is selected
-  };
-  const handleShowAllCourses = () => {
-    setShowAllCourses(!showAllCourses);
-  };
+    setShowAllCourses(false); };
 
   const handleNextChapter = () => {
     const currentCourse = courses[currentCourseIndex];

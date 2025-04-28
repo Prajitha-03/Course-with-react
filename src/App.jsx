@@ -2,15 +2,19 @@ import './App.css';
 import SideBar from './components/SideBar';
 import Main from './components/Main';
 import { useEffect, useState } from 'react';
+import axios from 'axios';
 
 function App() {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    fetch('/data/data.json')
-      .then(response => response.json())
-      .then(json => setCourses(json))
-      .catch(error => console.error('Error fetching courses:', error));
+    axios.get('/data/data.json')
+      .then(res => {
+        setCourses(res.data);
+      })
+      .catch(error => {
+        console.error('Error fetching courses:', error);
+      });
   }, []);
 
   const handleSelectCourse = (course) => {

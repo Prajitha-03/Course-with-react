@@ -2,6 +2,15 @@ import React, { useState } from 'react';
 import PdfModal from './PdfModal';
 import QuizModal from './QuizModal';
 
+// Helper function to get all available PDFs in a lesson
+const getLessonPdfs = (lesson) => {
+    const pdfs = [];
+    if (lesson.fileUrl && Array.isArray(lesson.fileUrl)) {
+        pdfs.push(...lesson.fileUrl); // Flatten the array of PDFs
+    }
+    return pdfs;
+};
+
 const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapterClick }) => {
     const [showPdfModal, setShowPdfModal] = useState(false);
     const [selectedPdf, setSelectedPdf] = useState(null);
@@ -34,7 +43,7 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                                     </div>
 
                                     {expandedCourses?.courseId === course._id.$oid &&
-                                        expandedCourses?.unitId === unit._id.$oid && (
+                                        expandedCourses?.unitId === unit._id.$oid && !isQuizOpen && (  // Only show lessons if quiz is not open
                                             <ul className="ml-4">
                                                 {unit.lessons && unit.lessons.map((lesson) => (
                                                     <li
@@ -55,16 +64,24 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                                                             <span>{lesson.title}</span>
                                                         </div>
 
-                                                        {lesson.fileUrl && (
-                                                            <button
-                                                                onClick={() => {
-                                                                    setSelectedPdf(lesson);
-                                                                    setShowPdfModal(true);
+                                                        {lesson.fileUrl && lesson.fileUrl.length > 0 && (
+                                                            <select
+                                                                onChange={(e) => {
+                                                                    const selectedUrl = e.target.value;
+                                                                    if (selectedUrl) {
+                                                                        setSelectedPdf({ title: lesson.title, fileUrl: selectedUrl });
+                                                                        setShowPdfModal(true);
+                                                                    }
                                                                 }}
-                                                                className="text-blue-500 hover:underline text-sm ml-2"
+                                                                className="ml-2 text-sm bg-transparent text-blue-500 hover:underline cursor-pointer"
                                                             >
-                                                                View PDF
-                                                            </button>
+                                                                <option value="">View PDFs</option>
+                                                                {getLessonPdfs(lesson).map((pdf, index) => (
+                                                                    <option key={index} value={pdf.url}>
+                                                                        {pdf.name}
+                                                                    </option>
+                                                                ))}
+                                                            </select>
                                                         )}
                                                     </li>
                                                 ))}
@@ -105,7 +122,17 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
 
             {/* Quiz Modal */}
             {isQuizOpen && quizUnit && (
-                <QuizModal closeQuizModal={closeQuizModal} unit={quizUnit} />
+                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
+                    <div className="bg-white rounded-lg shadow-lg p-4 w-11/12 max-h-screen overflow-y-auto relative">
+                        <button
+                            onClick={closeQuizModal}
+                            className="absolute top-2 right-4 text-red-500 text-2xl font-bold"
+                        >
+                            ✖
+                        </button>
+                        <QuizModal closeQuizModal={closeQuizModal} unit={quizUnit} />
+                    </div>
+                </div>
             )}
         </div>
     );

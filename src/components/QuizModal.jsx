@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-
+import axios from 'axios';
 const QuizModal = ({ closeQuizModal }) => {
   const [questions, setQuestions] = useState([]);
   const [current, setCurrent] = useState(0);
@@ -10,16 +10,10 @@ const QuizModal = ({ closeQuizModal }) => {
   const [error, setError] = useState(false);
 
   useEffect(() => {
-    fetch('/data/questions.json')
+    axios.get('/data/questions.json')
       .then(res => {
-        if (!res.ok) {
-          throw new Error('Failed to fetch questions');
-        }
-        return res.json();
-      })
-      .then(data => {
-        setQuestions(data);
-        setAnswers(Array(data.length).fill(''));
+        setQuestions(res.data);
+        setAnswers(Array(res.data.length).fill(''));
         setLoading(false);
       })
       .catch(err => {
@@ -28,6 +22,7 @@ const QuizModal = ({ closeQuizModal }) => {
         setLoading(false);
       });
   }, []);
+
 
   const handleSelect = (value) => {
     const updated = [...answers];

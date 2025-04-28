@@ -28,6 +28,18 @@
 },
 {
   "_id": {
+    "$oid": "67ff4b260293eb2cdd1bcff5"
+  },
+  "instructorId": {
+    "$oid": "67bc5bfee682a765d6bd78b4"
+  },
+  "questionType": "Multiple Answers",
+  "questionText": "Which of these are programming languages?",
+  "options": ["JavaScript", "Python", "HTML", "CSS", "React"],
+  "correctAnswer": ["JavaScript", "Python", "React"]
+},
+{
+  "_id": {
     "$oid": "67ff4b820293eb2cdd1bcff9"
   },
   "instructorId": {
