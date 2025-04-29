@@ -23,7 +23,7 @@
         "lessons": [
           {
             "title": "lesson1",
-            "videoUrl": "https://www.youtube.com/watch?v=3LG_BlKz_ds",
+            "videoUrl": "https://www.youtube.com/embed/oMw-PV-alxM?si=qJoNxVUngfMhCLD9",
             "fileUrl":[{
               "name": "1st pdf",
               "url": "/pdfs/JSX.pdf"}],
@@ -59,7 +59,7 @@
         "lessons": [
           {
             "title": "lesson3",
-            "videoUrl": "https://www.youtube.com/watch?v=mbiMAUE0CX4",
+            "videoUrl": "https://www.youtube.com/embed/oMw-PV-alxM?si=qJoNxVUngfMhCLD9",
             "fileUrl":[{
               "name": "1st pdf",
               "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
@@ -68,7 +68,7 @@
               "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
             },{
               "name": "3rd pdf",
-                "url": "http://localhost:5001/uploadsModule/1744717724852-NR.pdf"
+                "url": "/pdfs/JSX.pdf"
               }] ,
              "_id": {
               "$oid": "67fe479c06683cec2555786b"

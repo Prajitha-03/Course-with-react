@@ -2,11 +2,10 @@ import React, { useState } from 'react';
 import PdfModal from './PdfModal';
 import QuizModal from './QuizModal';
 
-// Helper function to get all available PDFs in a lesson
 const getLessonPdfs = (lesson) => {
     const pdfs = [];
     if (lesson.fileUrl && Array.isArray(lesson.fileUrl)) {
-        pdfs.push(...lesson.fileUrl); // Flatten the array of PDFs
+        pdfs.push(...lesson.fileUrl);
     }
     return pdfs;
 };
@@ -43,7 +42,7 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                                     </div>
 
                                     {expandedCourses?.courseId === course._id.$oid &&
-                                        expandedCourses?.unitId === unit._id.$oid && !isQuizOpen && (  // Only show lessons if quiz is not open
+                                        expandedCourses?.unitId === unit._id.$oid && (
                                             <ul className="ml-4">
                                                 {unit.lessons && unit.lessons.map((lesson) => (
                                                     <li
@@ -122,17 +121,7 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
 
             {/* Quiz Modal */}
             {isQuizOpen && quizUnit && (
-                <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex justify-center items-center">
-                    <div className="bg-white rounded-lg shadow-lg p-4 w-11/12 max-h-screen overflow-y-auto relative">
-                        <button
-                            onClick={closeQuizModal}
-                            className="absolute top-2 right-4 text-red-500 text-2xl font-bold"
-                        >
-                            ✖
-                        </button>
-                        <QuizModal closeQuizModal={closeQuizModal} unit={quizUnit} />
-                    </div>
-                </div>
+                <QuizModal closeQuizModal={closeQuizModal} unit={quizUnit} />
             )}
         </div>
     );

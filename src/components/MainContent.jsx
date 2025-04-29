@@ -17,6 +17,7 @@ const MainContent = ({
   return (
     <div className="flex-1 p-4 bg-white max-h-screen overflow-y-auto cursor-pointer">
       <div className="mt-4 flex justify-between">
+        
         {selectedChapterName && (
           <button
             onClick={onPrevChapter}
