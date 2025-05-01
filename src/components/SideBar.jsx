@@ -12,18 +12,10 @@ const SideBar = ({ courses }) => {
   const [currentCourseIndex, setCurrentCourseIndex] = useState(0);
   const [currentChapterIndex, setCurrentChapterIndex] = useState(0);
   const [showAllCourses, setShowAllCourses] = useState(false);
-   const [isQuizOpen, setIsQuizOpen] = useState(false);
-      const [quizUnit, setQuizUnit] = useState(null);
+  const [selectedQuiz, setSelectedQuiz] = useState(null);
+  const [showQuiz, setShowQuiz] = useState(false);
+  
 
-
-      const openQuizModal = (unit) => {
-        setQuizUnit(unit);
-        setIsQuizOpen(true);
-    };
-
-    const closeQuizModal = () => {
-        setIsQuizOpen(false);
-    };
   const toggleChapters = (index) => {
     setExpandedCourses(expandedCourses === index ? null : index);
   };
@@ -98,13 +90,8 @@ const SideBar = ({ courses }) => {
         showAllCourses={showAllCourses}
         setShowAllCourses={setShowAllCourses}
         handleChapterClick={handleChapterClick}
-        isQuizOpen={isQuizOpen}
-        closeQuizModal={closeQuizModal}
-        openQuizModal={openQuizModal}
-        quizUnit={quizUnit}
-        setQuizUnit={setQuizUnit}
-        setIsQuizOpen={setIsQuizOpen}
-        
+        showQuiz={showQuiz}
+        selectedQuiz={selectedQuiz}
       />
     </div>
   );

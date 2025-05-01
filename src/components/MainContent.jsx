@@ -1,5 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import AllCoursesSection from './AllCoursesSection';
+import QuizModal from './QuizModal';
 
 const MainContent = ({
   selectedChapterName,
@@ -14,10 +15,11 @@ const MainContent = ({
   showAllCourses,
   setShowAllCourses,
 }) => {
+  const [showQuiz, setShowQuiz] = useState(false);
+
   return (
     <div className="flex-1 p-4 bg-white max-h-screen overflow-y-auto cursor-pointer">
       <div className="mt-4 flex justify-between">
-        
         {selectedChapterName && (
           <button
             onClick={onPrevChapter}
@@ -26,6 +28,7 @@ const MainContent = ({
             <span className="text-xl text-gray-700">&lt;</span>
           </button>
         )}
+
         {selectedVideo ? (
           <div className="w-full max-w-5xl mx-auto aspect-video">
             <iframe
@@ -41,6 +44,7 @@ const MainContent = ({
             <p className="text-gray-500">Select a chapter to watch the video</p>
           </div>
         )}
+
         {selectedChapterName && (
           <button
             onClick={onNextChapter}
@@ -57,29 +61,33 @@ const MainContent = ({
             onClick={() => {
               setShowDescription(true);
               setShowAllCourses(false);
+              setShowQuiz(false);
             }}
-            className={`px-4 py-2 rounded-md shadow-md ${
-              showDescription
-                ? 'bg-gray-800 text-white'
-                : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-            }`}
+            className={`px-4 py-2 rounded-md shadow-md ${showDescription ? 'bg-gray-800 text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}
           >
             Description
           </button>
 
+          <button
+            onClick={() => {
+              setShowAllCourses(true);
+              setShowDescription(false);
+              setShowQuiz(false);
+            }}
+            className={`px-4 py-2 rounded-md shadow-md ${showAllCourses ? 'bg-gray-800 text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}
+          >
+            All Courses
+          </button>
 
           <button
             onClick={() => {
+              setShowQuiz(true);
+              setShowAllCourses(false);
               setShowDescription(false);
-              setShowAllCourses(true);
             }}
-            className={`px-4 py-2 rounded-md shadow-md ${
-              showAllCourses
-                ? 'bg-gray-800 text-white'
-                : 'bg-gray-300 text-gray-700 hover:bg-gray-400'
-            }`}
+            className={`px-4 py-2 rounded-md shadow-md ${showQuiz ? 'bg-gray-800 text-white' : 'bg-gray-300 text-gray-700 hover:bg-gray-400'}`}
           >
-            All Courses
+            Take Quiz
           </button>
         </div>
       )}
@@ -93,10 +101,13 @@ const MainContent = ({
 
       {showAllCourses && (
         <div className="mt-4">
-          <AllCoursesSection
-            courses={courses}
-            handleChapterClick={handleChapterClick}
-          />
+          <AllCoursesSection courses={courses} handleChapterClick={handleChapterClick} />
+        </div>
+      )}
+
+      {showQuiz && (
+        <div className="mt-4">
+          <QuizModal onBack={() => setShowQuiz(false)} />
         </div>
       )}
     </div>
