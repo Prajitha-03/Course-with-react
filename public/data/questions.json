@@ -7,7 +7,7 @@
       "$oid": "67bc5bfee682a765d6bd78b3"
     },
     "questionType": "Fill in the Blanks",
-    "questionText": "why7",
+    "questionText": " `int e^x dx`",
     "options": [],
     "correctAnswer": "yes",
     "category": "JavaScript",
@@ -56,7 +56,7 @@
     "instructorId": {
       "$oid": "67bc5bfee682a765d6bd78b3"
     },
-    "questionText": "What is the value of `sqrt(16)`?",
+    "questionText": "What is the value of `int 2 dx`?",
     "questionType": "MCQ",
     "options": [
       "2",

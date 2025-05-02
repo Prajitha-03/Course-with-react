@@ -4,11 +4,7 @@ import { MathJaxContext, MathJax } from 'better-react-mathjax';
 
 const mathConfig = {
   loader: { load: ['input/asciimath', 'output/chtml'] },
-  options: {
-    renderActions: {
-      addMenu: [],
-    },
-  },
+  options: { renderActions: { addMenu: [] } },
 };
 
 const QuizModal = ({ closeQuizModal, unit }) => {
@@ -67,28 +63,27 @@ const QuizModal = ({ closeQuizModal, unit }) => {
       ? (ans || []).map(a => a.toLowerCase()).sort().join(',') ===
         (q.correctAnswer || []).map(a => a.toLowerCase()).sort().join(',')
       : (ans || '').trim().toLowerCase() === q.correctAnswer.toLowerCase();
-
-    if (reviewMode) {
-      return (
-        <div className="mt-4 p-4 border rounded-lg bg-gray-50 shadow-sm">
-          <p className="mb-2">
-            <strong>Your Answer:</strong>{' '}
-            <span className={isCorrect ? 'text-green-600' : 'text-red-600'}>
-              <MathJax>{Array.isArray(ans) ? ans.join(', ') : ans || 'No Answer'}</MathJax>
-            </span>
-          </p>
-          {!isCorrect && (
-            <p>
-              <strong>Correct Answer:</strong>{' '}
-              <span className="text-green-600">
-                <MathJax>{Array.isArray(q.correctAnswer) ? q.correctAnswer.join(', ') : q.correctAnswer}</MathJax>
+      if (reviewMode) {
+        return (
+          <div className="mt-4 p-4 border rounded-lg bg-gray-50 shadow-sm">
+            <p className="mb-2">
+              <strong>Your Answer:</strong>{' '}
+              <span className={isCorrect ? 'text-green-600' : 'text-red-600'}>
+                <MathJax>{Array.isArray(ans) ? ans.join(', ') : ans || 'No Answer'}</MathJax>
               </span>
             </p>
-          )}
-        </div>
-      );
-    }
-
+            {!isCorrect && (
+              <p>
+                <strong>Correct Answer:</strong>{' '}
+                <span className="text-green-600">
+                  <MathJax>{Array.isArray(q.correctAnswer) ? q.correctAnswer.join(', ') : q.correctAnswer}</MathJax>
+                </span>
+              </p>
+            )}
+          </div>
+        );
+      }
+  
     const commonProps = 'w-full text-left border p-3 rounded-lg shadow-sm transition';
 
     switch (q.questionType) {
@@ -154,27 +149,14 @@ const QuizModal = ({ closeQuizModal, unit }) => {
   };
 
   if (loading || error) {
-    return (
-      <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-        <div className="bg-white p-6 rounded-xl shadow-lg text-center text-red-500">
-          {loading ? 'Loading Quiz...' : 'Failed to load quiz 😢'}
-        </div>
-      </div>
-    );
+    return <div className="text-center py-8">{loading ? 'Loading Quiz...' : 'Failed to load quiz 😢'}</div>;
   }
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 flex justify-center items-center z-50">
-      <div className="bg-white p-8 rounded-2xl shadow-2xl max-w-lg w-full">
-        <MathJaxContext config={mathConfig}>
-          <button
-            onClick={closeQuizModal}
-            className="text-red-500 float-right text-lg font-bold mb-4"
-          >
-            ✖
-          </button>
+    <MathJaxContext config={mathConfig}>
+      <div className="bg-white shadow-md p-4 mt-3 w-full">
 
-          {score !== null ? (
+        {score !== null ? (
             reviewMode ? (
               <>
                 <h2 className="text-2xl font-bold text-blue-600 mb-4">Review</h2>
@@ -198,7 +180,7 @@ const QuizModal = ({ closeQuizModal, unit }) => {
                   </button>
                 </div>
               </>
-            ) : (
+            )  : (
               <div className="text-center">
                 <h2 className="text-3xl font-bold text-blue-600">🎉 Quiz Completed!</h2>
                 <p className="text-xl mt-2">Your Score: {score} / {questions.length}</p>
@@ -237,9 +219,9 @@ const QuizModal = ({ closeQuizModal, unit }) => {
               </div>
             </>
           )}
-        </MathJaxContext>
-      </div>
-    </div>
+          </div>
+    </MathJaxContext>
+    
   );
 };
 

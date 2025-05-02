@@ -1,6 +1,5 @@
 import React, { useState } from 'react';
 import PdfModal from './PdfModal';
-import QuizModal from './QuizModal';
 
 const getLessonPdfs = (lesson) => {
     const pdfs = [];
@@ -13,17 +12,6 @@ const getLessonPdfs = (lesson) => {
 const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapterClick }) => {
     const [showPdfModal, setShowPdfModal] = useState(false);
     const [selectedPdf, setSelectedPdf] = useState(null);
-    const [isQuizOpen, setIsQuizOpen] = useState(false);
-    const [quizUnit, setQuizUnit] = useState(null);
-
-    const openQuizModal = (unit) => {
-        setQuizUnit(unit);
-        setIsQuizOpen(true);
-    };
-
-    const closeQuizModal = () => {
-        setIsQuizOpen(false);
-    };
 
     return (
         <div className="relative">
@@ -31,7 +19,7 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                 <div className="w-110 bg-gray-100 p-4 border-r border-gray-300 overflow-y-auto shadow-md">
                     <h2 className="text-xl font-bold mb-4">Course Content</h2>
                     <ul>
-                        {courses.map((course) => (
+                        {courses.map((course) =>
                             course.units.map((unit) => (
                                 <li key={unit._id.$oid}>
                                     <div
@@ -51,7 +39,9 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                                                     >
                                                         <div
                                                             className="flex items-center"
-                                                            onClick={() => handleChapterClick(lesson, course._id.$oid, unit._id.$oid)}
+                                                            onClick={() =>
+                                                                handleChapterClick(lesson, course._id.$oid, unit._id.$oid)
+                                                            }
                                                         >
                                                             <iframe
                                                                 className="w-24 h-16 mr-4 rounded-md shadow-md"
@@ -86,11 +76,20 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                                                 ))}
 
                                                 {unit.quizId && (
-                                                    <li className="mb-2 cursor-pointer hover:bg-gray-200 p-2 rounded-md transition">
-                                                        <span
-                                                            onClick={() => openQuizModal(unit)}
-                                                            className="text-purple-600 hover:text-purple-800"
-                                                        >
+                                                    <li
+                                                        className="mb-2 cursor-pointer hover:bg-gray-200 p-2 rounded-md transition"
+                                                        onClick={() => handleChapterClick(
+                                                            {
+                                                                type: 'quiz',
+                                                                title: unit.title,
+                                                                quizId: unit.quizId,
+                                                                questions: unit.questions || [],
+                                                            },
+                                                            course._id.$oid,
+                                                            unit._id.$oid
+                                                        )}
+                                                    >
+                                                        <span className="text-purple-600 hover:text-purple-800">
                                                             Quiz
                                                         </span>
                                                     </li>
@@ -99,7 +98,7 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                                         )}
                                 </li>
                             ))
-                        ))}
+                        )}
                     </ul>
                 </div>
             </div>
@@ -117,11 +116,6 @@ const CourseSidebar = ({ courses, expandedCourses, toggleChapters, handleChapter
                         <PdfModal lesson={selectedPdf} />
                     </div>
                 </div>
-            )}
-
-            {/* Quiz Modal */}
-            {isQuizOpen && quizUnit && (
-                <QuizModal closeQuizModal={closeQuizModal} unit={quizUnit} />
             )}
         </div>
     );

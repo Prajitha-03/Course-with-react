@@ -14,21 +14,31 @@ const SideBar = ({ courses }) => {
   const [showAllCourses, setShowAllCourses] = useState(false);
   const [selectedQuiz, setSelectedQuiz] = useState(null);
   const [showQuiz, setShowQuiz] = useState(false);
-  
 
   const toggleChapters = (index) => {
     setExpandedCourses(expandedCourses === index ? null : index);
   };
 
   const handleChapterClick = (chapter, courseIndex, chapterIndex) => {
-    setSelectedVideo(chapter.videoUrl);
-    setSelectedChapterName(chapter.name);
-    setSelectedDescription(chapter.description || 'No description available.');
-    setShowDescription(true);
+    if (chapter.type === 'quiz') {
+      setSelectedQuiz(chapter);
+      setShowQuiz(true);
+      setSelectedVideo(null);
+      setShowDescription(false);
+    } else {
+      setSelectedVideo(chapter.videoUrl);
+      setSelectedChapterName(chapter.name);
+      setSelectedDescription(chapter.description || 'No description available.');
+      setShowDescription(true);
+      setSelectedQuiz(null);
+      setShowQuiz(false);
+    }
+
     setCurrentCourseIndex(courseIndex);
     setCurrentChapterIndex(chapterIndex);
     setExpandedCourses(courseIndex);
-    setShowAllCourses(false); };
+    setShowAllCourses(false);
+  };
 
   const handleNextChapter = () => {
     const currentCourse = courses[currentCourseIndex];
@@ -59,7 +69,6 @@ const SideBar = ({ courses }) => {
           const lastChapterIndex = courses[prevCourseIndex].chapters.length - 1;
           handleChapterClick(courses[prevCourseIndex].chapters[lastChapterIndex], prevCourseIndex, lastChapterIndex);
         } else {
-          // If no previous course exists, go to the last chapter of the last course
           const lastCourseIndex = courses.length - 1;
           const lastChapterIndex = courses[lastCourseIndex].chapters.length - 1;
           handleChapterClick(courses[lastCourseIndex].chapters[lastChapterIndex], lastCourseIndex, lastChapterIndex);
@@ -92,6 +101,7 @@ const SideBar = ({ courses }) => {
         handleChapterClick={handleChapterClick}
         showQuiz={showQuiz}
         selectedQuiz={selectedQuiz}
+        setShowQuiz={setShowQuiz}
       />
     </div>
   );
